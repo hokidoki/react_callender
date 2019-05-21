@@ -17,13 +17,17 @@ export const prevMonth = () =>{
 
 export function createInitialState(){
     const date = new Date("","",0);
+    const get_day = new Date("","",1);
     date.setFullYear(new Date().getFullYear());
     date.setMonth(new Date().getMonth());
+    get_day.setFullYear(new Date().getFullYear());
+    get_day.setMonth(new Date().getMonth());
     return {
         yy : date.getFullYear(),
         mm : date.getMonth()+1,
         firstday : 1,
-        lastdate : date.getDate()
+        lastdate : date.getDate(),
+        first_get_day : get_day.getDay()
     }
 }
 
@@ -37,11 +41,14 @@ function buildNextMonth(yy,mm){
         month = mm +1;
     }
     const next_month_callender = new Date(year,month,0);
+    const next_month_get_day = new Date(year,month-1,1);
+    console.log(next_month_get_day)
     return {
         yy : year,
         mm : month,
         firstday : 1,
-        lastdate : next_month_callender.getDate()
+        lastdate : next_month_callender.getDate(),
+        first_get_day : next_month_get_day.getDay()
     }
 }
 
@@ -55,11 +62,14 @@ function buildPrevMonth(yy,mm){
         month = mm - 1;
     }
     const prev_month_callender = new Date(year,month,0);
+    const prev_month_get_day = new Date(year,month-1,1);
+    console.log(prev_month_get_day);
     return {
         yy : year,
         mm : month,
         firstday : 1,
-        lastdate : prev_month_callender.getDate()
+        lastdate : prev_month_callender.getDate(),
+        first_get_day : prev_month_get_day.getDay()
     }
 }
 
